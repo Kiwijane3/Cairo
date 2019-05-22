@@ -1,17 +1,23 @@
-// swift-tools-version:3.0.2
+// swift-tools-version:4.0.0
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "Cairo",
+	dependencies: [
+		.package(url: "https://github.com/Kiwijane3/CCairo.git", .branch("master")),
+		.package(url: "https://github.com/PureSwift/CFontConfig.git", .branch("master")),
+		.package(url: "https://github.com/KiwiJane3/CFreeType.git", .branch("master"))
+	],
     targets: [
-        Target(
-            name: "Cairo")
-    ],
-    dependencies: [
-        .Package(url: "https://github.com/PureSwift/CCairo.git", majorVersion: 1),
-        .Package(url: "https://github.com/PureSwift/CFontConfig.git", majorVersion: 1),
-        .Package(url: "https://github.com/PureSwift/CFreeType.git", majorVersion: 1)
+		.target(
+            name: "Cairo",
+			dependencies: [
+				"CFontConfig",
+				"CCairo",
+				"CFreeType"
+			]
+		)
     ]
 )
